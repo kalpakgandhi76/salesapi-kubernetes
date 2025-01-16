@@ -29,9 +29,7 @@
 
 name: Build and deploy an app to AKS
 
-on:
-  push:
-    branches: [ "main" ]
+on:  
   workflow_dispatch:
 
 
