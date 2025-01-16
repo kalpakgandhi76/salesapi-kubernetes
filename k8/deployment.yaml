@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salesapi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: salesapi
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: salesapi
+        image: your-acr-name.azurecr.io/your-app-name:latest # This will be replaced dynamically in the workflow
+        ports:
+        - containerPort: 80
