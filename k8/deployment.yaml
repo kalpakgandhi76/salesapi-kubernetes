@@ -19,6 +19,6 @@ spec:
     spec:
       containers:
       - name: agentsapi
-        image: your-acr-name.azurecr.io/your-app-name:latest # This will be replaced dynamically in the workflow
+        image: ${image}
         ports:
         - containerPort: 80
