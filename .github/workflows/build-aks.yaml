@@ -49,12 +49,15 @@ jobs:
       - uses: actions/checkout@v4
 
       # Logs in with your Azure credentials
-      - name: Azure login
-        uses: azure/login@v1.4.6
+      - name: Login to Azure
+        uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }} # Azure service principal credentials
+          enable-AzPSSession: false
+          environment: azurecloud
+          allow-no-subscriptions: false
+          audience: api://AzureADTokenExchange
+          auth-type: SERVICE_PRINCIPAL
 
       # Builds and pushes an image up to your Azure Container Registry
       - name: Build and push image to ACR
