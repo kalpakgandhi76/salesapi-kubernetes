@@ -63,9 +63,9 @@ jobs:
         run: |
           ls -latr
           
-      - name: Change Working Directory
+      - name: Current Working Directory
         run: |
-          cd Sales.Backend.Api
+          pwd
 
       # Builds and pushes an image up to your Azure Container Registry
       - name: Build and push image to ACR
