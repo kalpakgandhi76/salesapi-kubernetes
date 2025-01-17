@@ -94,4 +94,4 @@ jobs:
           k8/loadbalancer.yaml
         namespace: dev
         images: |
-          ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:6cc903ded62abb1107081479e017780067ffde3e
+          '${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:6cc903ded62abb1107081479e017780067ffde3e'
