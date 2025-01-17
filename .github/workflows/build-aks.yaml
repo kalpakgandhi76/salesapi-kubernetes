@@ -61,7 +61,7 @@ jobs:
           
       - name: List the Files
         run: |
-          ls -latr
+          cd Sales.Backend.Api | ls -latr
           
       - name: Current Working Directory
         run: |
