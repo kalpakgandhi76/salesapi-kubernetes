@@ -5,7 +5,8 @@ EXPOSE 443
 WORKDIR /app
 COPY . ./
 RUN dotnet restore
-RUN dotnet publish -c Release --self-contained -o /out
+RUN dotnet build
+RUN dotnet publish --runtime linux-arm64 -c Release --self-contained -o /out
 
 # Use the official .NET runtime image for the runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
