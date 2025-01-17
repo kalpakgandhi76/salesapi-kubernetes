@@ -58,6 +58,10 @@ jobs:
           allow-no-subscriptions: false
           audience: api://AzureADTokenExchange
           auth-type: SERVICE_PRINCIPAL
+          
+      - name: List the Files
+        run: |
+          ls -latr
 
       # Builds and pushes an image up to your Azure Container Registry
       - name: Build and push image to ACR
