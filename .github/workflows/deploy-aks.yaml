@@ -89,6 +89,8 @@ jobs:
       uses: Azure/k8s-deploy@v4
       with:
         action: deploy
-        manifests: ${{ env.DEPLOYMENT_MANIFEST_PATH }}
+        manifests: |
+          k8/deployment.yaml
+          k8/loadbalancer.yaml
         images: |
           ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:6cc903ded62abb1107081479e017780067ffde3e
