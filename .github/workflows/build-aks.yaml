@@ -67,7 +67,7 @@ jobs:
       - name: Build and push image to ACR
         run: |
           az acr build --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} --file ./Sales.Backend.Api/Dockerfile -g ${{ env.RESOURCE_GROUP }} .
-
+        working-directory: ./Sales.Backend.Api
   deploy:
     permissions:
       actions: read
