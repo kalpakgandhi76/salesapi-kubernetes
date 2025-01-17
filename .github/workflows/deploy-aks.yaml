@@ -38,7 +38,7 @@ env:
   CONTAINER_NAME: "salesapi"
   RESOURCE_GROUP: "anycompany-infra-group"
   CLUSTER_NAME: "anycompany-np-workload"
-  DEPLOYMENT_MANIFEST_PATH: "./k8/*.yaml"
+  DEPLOYMENT_MANIFEST_PATH: "k8/*.yaml"
 jobs:
   deploy:
     permissions:
