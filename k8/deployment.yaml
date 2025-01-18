@@ -19,6 +19,6 @@ spec:
     spec:
       containers:
       - name: agentsapi
-        image: anycompanyacr.azurecr.io/salesapi:01172025.1
+        image: anycompanyacr.azurecr.io/salesapi:01172025.2
         ports:
         - containerPort: 80
