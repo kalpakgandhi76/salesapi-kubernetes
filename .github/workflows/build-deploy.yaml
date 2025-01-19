@@ -44,7 +44,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  
     steps:
     # Checks out the repository this file is in
     - uses: actions/checkout@v4
@@ -65,7 +65,13 @@ jobs:
     # Builds and pushes an image up to your Azure Container Registry
     - name: Build and push image to ACR
       run: |
-        az acr build --image ${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }}  .
+        az acr build --image ${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }}  .       
+ 
+    - name: Define image name
+      id: define_image
+      run: |
+        IMAGE_NAME="${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:{{ github.sha }}"
+        echo "IMAGE_NAME=${IMAGE_NAME}" >> $GITHUB_ENV  # Export image name as an environment variable
 
   deploy:
     needs: buildImage
@@ -102,17 +108,17 @@ jobs:
         resource-group: ${{ env.RESOURCE_GROUP }}
         cluster-name: ${{ env.CLUSTER_NAME }}
         admin: 'true'
-        #use-kubelogin: 'true'   
-
-    - name: List the Files
+        #use-kubelogin: 'true'    
+        
+    - name: Get image name from build job output
       run: |
-        ls -latr  
+        echo "Using image: ${{IMAGE_NAME}}"
 
-    - name: Define image name
-      id: define_image
-      run: |
-        IMAGE_NAME="${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:{{ github.sha }}"
-        echo "IMAGE_NAME=${IMAGE_NAME}" >> $GITHUB_ENV  # Export image name as an environment variable
+    #- name: Define image name
+    #  id: define_image
+    #  run: |
+    #    IMAGE_NAME="${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:{{ github.sha }}"
+    #    echo "IMAGE_NAME=${IMAGE_NAME}" >> $GITHUB_ENV  # Export image name as an environment variable
 
     - name: Update namespace in namespace-dev.yaml and apply
       run: |
