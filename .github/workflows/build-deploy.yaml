@@ -41,7 +41,7 @@ jobs:
     # Builds and pushes an image up to your Azure Container Registry
     - name: Build and push image to ACR
       run: |
-        az acr build --image ${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }}  .       
+        az acr build --image ${{ env.CONTAINER_NAME }}:${{ github.sha }} --platform linux/arm64 --registry ${{ env.AZURE_CONTAINER_REGISTRY }}  .       
 
     - name: Define image name
       id: define_image
