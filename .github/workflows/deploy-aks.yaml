@@ -84,9 +84,9 @@ jobs:
       run: |
         ls -latr
 
-    - name: Change Permission for k8 folder
-      run: |
-        chmod -R 777 k8
+    #- name: Change Permission for k8 folder
+    #  run: |
+    #    chmod -R 777 k8
 
     - name: Define image name
       id: define_image
