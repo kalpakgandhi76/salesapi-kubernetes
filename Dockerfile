@@ -7,7 +7,8 @@ WORKDIR /app
 COPY . ./
 RUN dotnet restore
 RUN dotnet build -c Release
-RUN dotnet publish --runtime linux-arm64 -c Release --self-contained -o /out
+#RUN dotnet publish --runtime linux-arm64 -c Release --self-contained -o /out
+RUN dotnet publish --runtime linux-arm64 -c Release  -o /out
 
 # Use the official .NET runtime image for the runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
