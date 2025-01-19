@@ -93,6 +93,11 @@ jobs:
       run: |
         IMAGE_NAME="${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:01172025.2"
         echo "IMAGE_NAME=${IMAGE_NAME}" >> $GITHUB_ENV  # Export image name as an environment variable
+
+    - name: Update namespace in namespace-dev.yaml and apply
+      run: |        
+        # Apply the NameSpace
+        kubectl apply -f k8/namespace-dev.yaml
         
     - name: Update service in loadbalancer.yaml and apply
       run: |        
