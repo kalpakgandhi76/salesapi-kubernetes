@@ -76,22 +76,24 @@ jobs:
         admin: 'true'
         #use-kubelogin: 'true'
 
+    - name: Current Working Directory
+      run: |
+        pwd 
+
     - name: List the Files
       run: |
         ls -latr
 
-    - name: Current Working Directory
+    - name: Change Permission for k8 folder
       run: |
-        pwd  
+        chmod -R 777 k8    
 
     # Deploys application based on given manifest file
     - name: Deploys application
       uses: Azure/k8s-deploy@v4
       with:
         action: deploy
-        manifests: |
-          k8/deployment.yaml
-          k8/loadbalancer.yaml
+        manifests: k8/*.yaml
         namespace: dev
         images: |
-          '${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:6cc903ded62abb1107081479e017780067ffde3e'
+          '${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:01172025.2'
