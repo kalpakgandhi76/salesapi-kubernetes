@@ -19,6 +19,6 @@ spec:
     spec:
       containers:
       - name: agentsapi
-        image: $(image)
+        image: "{{images}}"
         ports:
         - containerPort: 80
