@@ -58,17 +58,14 @@ jobs:
         environment: azurecloud
         allow-no-subscriptions: false
         audience: api://AzureADTokenExchange
-        auth-type: SERVICE_PRINCIPAL
-    - name: Build and push image to ACR
-      run: |
-        ls -l
+        auth-type: SERVICE_PRINCIPAL        
+   
     # Builds and pushes an image up to your Azure Container Registry
     - name: Build and push image to ACR
       run: |
         az acr build --image ${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }}  .       
  
-    - name: Define image name
-      id: define_image
+    - name: Define image name  
       run: |
         IMAGE_NAME="${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:{{ github.sha }}"
         echo "IMAGE_NAME=${IMAGE_NAME}" >> $GITHUB_ENV  # Export image name as an environment variable
