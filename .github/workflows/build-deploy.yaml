@@ -45,13 +45,13 @@ jobs:
 
     - name: Build and push Docker image to ACR
       run: |
-        az acr login -n ${env.AZURE_CONTAINER_REGISTRY}
+        az acr login -n "${{env.AZURE_CONTAINER_REGISTRY}}"
 
         # Build the Docker image
-        docker build -t ${env.AZURE_CONTAINER_REGISTRY}.azurecr.io/${env.CONTAINER_NAME}:${github.sha} .
+        docker build -t ${{env.AZURE_CONTAINER_REGISTRY}}.azurecr.io/${{env.CONTAINER_NAME}}:${{github.sha}} .
 
         # Push the Docker image to ACR
-        docker push ${env.AZURE_CONTAINER_REGISTRY}.azurecr.io/${env.CONTAINER_NAME}:${github.sha}  
+        docker push ${{env.AZURE_CONTAINER_REGISTRY}}.azurecr.io/${{env.CONTAINER_NAME}}:${{github.sha}}  
 
     - name: Define image name
       id: define_image
