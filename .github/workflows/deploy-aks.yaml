@@ -93,7 +93,7 @@ jobs:
       uses: Azure/k8s-deploy@v4
       with:
         action: deploy
-        manifests: k8/*.yaml
+        manifests: k8
         namespace: dev
         images: |
           '${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:01172025.2'
