@@ -1,9 +1,13 @@
-
 name: Build and deploy an app to AKS
 
 on:
-  workflow_dispatch:
-
+  push:
+    branches:
+    - main
+    paths-ignore:
+    - '**/*.md'
+    - '**/*.gitignore'
+    - '**/*.gitattributes'
 
 env:
   AZURE_CONTAINER_REGISTRY: "anycompanyacr"
@@ -18,7 +22,7 @@ jobs:
       id-token: write
     runs-on: ubuntu-latest
     outputs:
-     image-name: ${{ steps.define_image.outputs.image_name }} 
+      image-name: ${{ steps.define_image.outputs.image_name }}
     steps:
     # Checks out the repository this file is in
     - uses: actions/checkout@v4
@@ -32,13 +36,13 @@ jobs:
         environment: azurecloud
         allow-no-subscriptions: false
         audience: api://AzureADTokenExchange
-        auth-type: SERVICE_PRINCIPAL        
-   
+        auth-type: SERVICE_PRINCIPAL
+
     # Builds and pushes an image up to your Azure Container Registry
     - name: Build and push image to ACR
       run: |
         az acr build --image ${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }}  .       
- 
+
     - name: Define image name
       id: define_image
       run: |
@@ -82,7 +86,7 @@ jobs:
         cluster-name: ${{ env.CLUSTER_NAME }}
         admin: 'true'
         #use-kubelogin: 'true'    
-        
+
     - name: Get image name from build job output
       run: |
         IMAGE_NAME="${{ needs.buildImage.outputs.image-name }}"
