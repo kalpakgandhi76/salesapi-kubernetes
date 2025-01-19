@@ -73,7 +73,7 @@ jobs:
       with:
         resource-group: ${{ env.RESOURCE_GROUP }}
         cluster-name: ${{ env.CLUSTER_NAME }}
-        admin: 'true'
+        admin: 'false'
         #use-kubelogin: 'true'
 
     - name: Current Working Directory
@@ -93,6 +93,11 @@ jobs:
       run: |
         IMAGE_NAME="${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:01172025.2"
         echo "IMAGE_NAME=${IMAGE_NAME}" >> $GITHUB_ENV  # Export image name as an environment variable
+        
+    - name: Update service in loadbalancer.yaml and apply
+      run: |        
+        # Apply the Load Balancer Service
+        kubectl apply -f k8/loadbalancer.yaml
 
     - name: Update image in deployment.yaml and apply
       run: |
