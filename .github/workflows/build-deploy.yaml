@@ -20,7 +20,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    runs-on: ubuntu-latest
+    runs-on: [ ubuntu-latest, arm64 ]
     outputs:
       image-name: ${{ steps.define_image.outputs.image_name }}
     steps:
