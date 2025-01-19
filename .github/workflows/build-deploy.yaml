@@ -87,6 +87,7 @@ jobs:
       run: |
         IMAGE_NAME="${{ needs.buildImage.outputs.image-name }}"
         echo "Using image: $IMAGE_NAME" 
+        echo "IMAGE_NAME=$IMAGE_NAME" >> $GITHUB_ENV  # Export image name to environment (optional, for use within this job)
 
     #- name: Define image name
     #  id: define_image
