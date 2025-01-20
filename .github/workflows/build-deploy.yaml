@@ -12,8 +12,8 @@ on:
 env:
   AZURE_CONTAINER_REGISTRY: "anycompanyacr"
   CONTAINER_NAME: "salesapi"
-  RESOURCE_GROUP: "anycompany-infra-group"
-  CLUSTER_NAME: "anycompany-np-workload"
+  RESOURCE_GROUP: "anycompany-group"
+  CLUSTER_NAME: "anycompany-workload"
 
 jobs:
   buildImage:
