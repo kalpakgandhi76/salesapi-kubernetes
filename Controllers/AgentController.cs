@@ -7,9 +7,9 @@ namespace Stackup.Api.Controllers;
 [Route("api/[controller]/quote")]
 public class AgentController : ControllerBase
 {
-    private readonly ILogger<StatusController> _logger;   
+    private readonly ILogger<AgentController> _logger;   
 
-    public AgentController(ILogger<StatusController> logger)
+    public AgentController(ILogger<AgentController> logger)
     {
         _logger = logger;   
     }
