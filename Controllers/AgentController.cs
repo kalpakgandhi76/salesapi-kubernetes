@@ -19,7 +19,7 @@ public class AgentController : ControllerBase
     [HttpGet()]
     public ActionResult<Quote> Quote()
     {
-       _logger.LogInformation("Quote Action called");
+       _logger.LogInformation("Quote Action called..");
        var quote = CreateQuote();
        _logger.LogInformation("Quote Object :: {Quote}", JsonSerializer.Serialize(quote));
        return quote;
