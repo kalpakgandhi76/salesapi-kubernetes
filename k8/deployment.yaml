@@ -13,6 +13,8 @@ spec:
       app: agentsapi
   template:
     metadata:
+      annotations:
+        ad.datadoghq.com/agentsapi.logs: '[{"source":"agentsapi","service":"agentsapi"}]'
       labels:
         app: agentsapi
         backstage.io/kubernetes-id: agentsapi-app
