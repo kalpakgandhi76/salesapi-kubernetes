@@ -1,3 +1,5 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 
@@ -19,7 +21,7 @@ public class AgentController : ControllerBase
     {
        _logger.LogInformation("Quote Action called");
        var quote = CreateQuote();
-       _logger.LogInformation("Quote Object :: {Quote}", quote);
+       _logger.LogInformation("Quote Object :: {Quote}", JsonSerializer.Serialize(quote));
        return quote;
     }
 
