@@ -37,10 +37,16 @@ public class AgentController : ControllerBase
             Model = "Model3",
             Year = 2024       
         };
+        var vehicle3 = new Vehicle{
+            Make = "BMW",
+            Model = "X5",
+            Year = 2024       
+        };
         var vehicleList = new List<Vehicle>
         {
             vehicle1,
-            vehicle2
+            vehicle2,
+            vehicle3
         };
         var customer = new Customer{
             firstName = "John",
